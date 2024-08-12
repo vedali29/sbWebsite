@@ -32,7 +32,7 @@ const Navbar = () => {
           {/* Navigation options */}
           <ul className="nav-options">
             <li className="nav-item" onClick={() => { navigate('/'); setShowNavigation(false); }}>Home</li>
-            <li className="nav-item" onClick={() => { navigate('/Initiatives'); setShowNavigation(false); }}>Initiatives</li>
+            <li className="nav-item" onClick={() => { navigate('/Learn'); setShowNavigation(false); }}>Learn</li>
             <li className="nav-item" onClick={() => { navigate('/AboutUs'); setShowNavigation(false); }}>About Us</li>
             <li className="nav-item" onClick={() => { navigate('/Contact'); setShowNavigation(false); }}>Contact</li>
           </ul>
@@ -47,8 +47,8 @@ const Navbar = () => {
           <div className="logo-container">
             <img src={sb_logo} alt="Sustainable Bhava" className="logo" />
           </div>
-          <div className="nav-item" onClick={() => navigate('/Initiatives')}>Initiatives</div>
           <div className="nav-item" onClick={() => navigate('/Contact')}>Contact Us</div>
+          <div className="nav-item" onClick={() => navigate('/Learn')}>Learn</div>
         </div>
       </div>
     </>

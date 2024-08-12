@@ -4,6 +4,7 @@ import Home from './components/Home'
 import Contact from './components/Contact'
 import Initiatives from './components/Initiatives'
 import AboutUs from './components/AboutUs'
+import Learn from './components/Learn'
 
 
 const App = () => {
@@ -13,7 +14,7 @@ const App = () => {
         <Route exact path ='/' element = {<Home/>}/>
         <Route path='AboutUs' element={<AboutUs/>}/>
         <Route path='Contact' element={<Contact/>}/>
-        <Route path='Initiatives' element={<Initiatives/>}/>
+        <Route path='Learn' element={<Learn/>}/>
       </Routes>
     </>
   )
