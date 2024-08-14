@@ -1,54 +1,70 @@
 import React, { useState } from 'react';
-import './Navbar.css';
 import sb_logo from '../assets/sb_logo.png';
-import navigate_icon from '../assets/navigate_icon.svg';
-import cross_icon from '../assets/cross_icon.svg';
 import { useNavigate } from 'react-router-dom';
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
 
 const Navbar = () => {
-  const [showNavigation, setShowNavigation] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activePath, setActivePath] = useState('/');
   const navigate = useNavigate();
+
+  const handleNavigation = (path) => {
+    navigate(path);
+    setActivePath(path);
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <>
-      {/* for mobile screen */}
-      <div className="relative">
-        <div className="navbar-mobile lg:hidden">
-          <div className="logo-container">
-            <img src={sb_logo} alt="Sustainable Bhava" className="max-w-full" />
-          </div>
-          <div className="nav-icon-container">
-            <div className="nav-icon">
-              <img
-                className="cursor-pointer"
-                src={showNavigation ? cross_icon : navigate_icon}
-                alt="Navigate"
-                onClick={() => setShowNavigation(!showNavigation)}
-              />
-            </div>
-          </div>
-        </div>
-        <div className={`mobile-nav-menu ${showNavigation ? "show" : "hide"}`}>
-          {/* Navigation options */}
-          <ul className="nav-options">
-            <li className="nav-item" onClick={() => { navigate('/'); setShowNavigation(false); }}>Home</li>
-            <li className="nav-item" onClick={() => { navigate('/Learn'); setShowNavigation(false); }}>Learn</li>
-            <li className="nav-item" onClick={() => { navigate('/AboutUs'); setShowNavigation(false); }}>About Us</li>
-            <li className="nav-item" onClick={() => { navigate('/Contact'); setShowNavigation(false); }}>Contact</li>
+      {/* Mobile Navbar */}
+      <div className="lg:hidden flex justify-between items-center px-4 py-3 bg-white shadow-md">
+        <img src={sb_logo} alt="Sustainable Bhava" className="h-12" />
+        <button
+          className="text-black focus:outline-none"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? (
+            <XIcon className="h-6 w-6" />
+          ) : (
+            <MenuIcon className="h-6 w-6" />
+          )}
+        </button>
+      </div>
+      {isMobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 bg-white z-20 flex flex-col items-center pt-24 space-y-8">
+          <ul className="space-y-6 text-xl">
+            {['/', '/Learn', '/AboutUs', '/Contact'].map((path) => (
+              <li
+                key={path}
+                className={`cursor-pointer px-6 py-4 rounded-full transition-all ${
+                  activePath === path ? 'bg-yellow-400' : 'hover:bg-yellow-400'
+                } text-black`}
+                onClick={() => handleNavigation(path)}
+              >
+                {path === '/' ? 'Home' : path.slice(1).replace(/([A-Z])/g, ' $1')}
+              </li>
+            ))}
           </ul>
         </div>
-      </div>
+      )}
 
-      {/* for the pc screen */}
-      <div className="navbar-pc hidden lg:flex">
-        <div className="nav-container">
-          <div className="nav-item" onClick={() => navigate('/')}>Home</div>
-          <div className="nav-item" onClick={() => navigate('/AboutUs')}>About Us</div>
-          <div className="logo-container">
-            <img src={sb_logo} alt="Sustainable Bhava" className="logo" />
+      {/* Desktop Navbar */}
+      <div className="hidden lg:flex justify-center items-center bg-white shadow-md py-4 rounded-3xl mx-16">
+        <div className="flex items-center justify-between w-full px-12">
+          <img src={sb_logo} alt="Sustainable Bhava" className="h-12" />
+          <div className="flex items-center space-x-12">
+            {['/', '/Learn', '/AboutUs', '/Contact'].map((path) => (
+              <div
+                key={path}
+                className={`text-xl cursor-pointer px-6 py-3 rounded-full transition-all ${
+                  activePath === path ? 'bg-yellow-400 text-black' : 'hover:bg-yellow-400'
+                }`}
+                onClick={() => handleNavigation(path)}
+              >
+                {path === '/' ? 'Home' : path.slice(1).replace(/([A-Z])/g, ' $1')}
+              </div>
+            ))}
           </div>
-          <div className="nav-item" onClick={() => navigate('/Contact')}>Contact Us</div>
-          <div className="nav-item" onClick={() => navigate('/Learn')}>Learn</div>
         </div>
       </div>
     </>

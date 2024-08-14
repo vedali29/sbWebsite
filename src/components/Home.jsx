@@ -11,6 +11,7 @@ import Group_6 from '../SB photos/Group 6.png'
 import Group_9 from '../SB photos/Group 9.jpg'
 import ImpactCreated from './ImpactCreated';
 import GallerySection from './GallerySection';
+import Carousel from './Carousel';
 
 const Home = () => {
     const [reportsOpen, setReportsOpen] = useState(false);
@@ -19,8 +20,7 @@ const Home = () => {
             <Navbar />
             <br />
             <br />
-            {/* <Carousel />
-            <Modal /> */}
+            <Carousel/>
             <div className="intro-container">
                 <div className="intro-image">
                     <img src={Group_9} alt="Sustainable Bhava" />
@@ -73,7 +73,7 @@ const Home = () => {
                 <strong>Learn about SDG's</strong>
             </div>
 
-            <Sdgs />
+            <Sdgs/>
             <br />
 
             <div className="impact-section">
@@ -90,26 +90,6 @@ const Home = () => {
 
             <GallerySection/>
             
-            <div className="highlights-section">
-                <span className="highlights-title">
-                    Highlights of our Work
-                </span>
-                <br />
-                <span className="highlights-text">
-                    <br />
-                    ● Carried out dozens of local movements visiting households to interact with
-                    people to understand the root cause of the obstacles that are being faced while
-                    handling the scrap. <br /> <br />
-                    ● Organized plays/nukkad-natak to spread awareness regarding critical social issues
-                    like drug abuse, sexual harassment & rape, and 21st century environment crisis <br /> <br />
-                    ● Initiated some sustainable schemes including waste exchange programmes, zero
-                    waste management & promoted waste segregation <br /> <br />
-                    ● Proposed massive tree plantation drives across Kapurthala city, resulting 2000
-                    saplings being planted across numerous neighbourhoods <br /> <br />
-                    ● Making advances in the class structures and explaining the role of renewable
-                    energy resources through webinars & discussions.
-                </span>
-            </div>
             <FooterUpper/>
             <Footer />
         </>
